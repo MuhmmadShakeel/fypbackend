@@ -1,0 +1,10 @@
+import { returnItem, getReturnInfo, deleteReturn, getAllReturns } from "../controller/ReturnItemcontroller.js";
+import upload from "../middleware/Multer.js";
+import { RestrictLogin } from "../middleware/RestrictLogin.js";
+import express from "express";
+const returnRouter = express.Router();
+returnRouter.post("/returnitem/:id", upload.single("returnImage"),RestrictLogin,returnItem);
+returnRouter.get("/getreturninfo", RestrictLogin, getReturnInfo);
+returnRouter.delete("/returnitem/:id", RestrictLogin, deleteReturn);
+returnRouter.get("/allgetreturns", RestrictLogin, getAllReturns);
+export default returnRouter;

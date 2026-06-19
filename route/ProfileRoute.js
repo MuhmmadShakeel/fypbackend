@@ -1,0 +1,10 @@
+import express from "express";
+import { RestrictLogin } from "../middleware/RestrictLogin.js";
+import upload from "../middleware/Multer.js";
+import { createProfile, deleteProfile, getProfilebyId, updatePrfile } from "../controller/ProfileController.js";
+const ProfileRoute = express.Router();
+ProfileRoute.post("/createProfile", RestrictLogin, upload.single("profilePicture"), createProfile);
+ProfileRoute.get("/getProfilebyId", RestrictLogin, getProfilebyId);
+ProfileRoute.put("/updateProfile", RestrictLogin, upload.single("profilePicture"), updatePrfile);
+ProfileRoute.delete("/deleteProfile", RestrictLogin, deleteProfile);
+export default ProfileRoute;

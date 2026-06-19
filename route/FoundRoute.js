@@ -1,0 +1,11 @@
+import { createFoundItem, deleteFoundItem, getAllFoundItems, getFoundItemById, updateFoundItem } from '../controller/FoundController.js';
+import { RestrictLogin } from '../middleware/RestrictLogin.js';
+import upload from '../middleware/Multer.js';
+import express from 'express';
+const foundRoute = express.Router();
+foundRoute.post("/createfound", RestrictLogin, upload.single("foundimage"), createFoundItem);
+foundRoute.get("/getallfound", getAllFoundItems);
+foundRoute.get("/getfoundbyid",RestrictLogin, getFoundItemById);
+foundRoute.delete("/deletefound/:id", RestrictLogin, deleteFoundItem);
+foundRoute.put("/updatefound/:id", RestrictLogin, upload.single("foundimage"), updateFoundItem);
+export default foundRoute;
